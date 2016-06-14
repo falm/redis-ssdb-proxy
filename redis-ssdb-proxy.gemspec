@@ -6,11 +6,11 @@ require 'redis/ssdb/proxy/version'
 Gem::Specification.new do |spec|
   spec.name          = "redis-ssdb-proxy"
   spec.version       = Redis::Ssdb::Proxy::VERSION
-  spec.authors       = ["Jason Hou"]
+  spec.authors       = ["falm"]
   spec.email         = ["hjj1992@gmail.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
+  spec.summary       = %q{proxy that read from redis(or ssdb) write to both use for redis <=> ssdb migration on production}
+  spec.description   = %q{proxy that read from redis(or ssdb) write to both use for redis <=> ssdb migration on production}
   spec.homepage      = "TODO: Put your gem's website or public repo URL here."
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
@@ -20,6 +20,7 @@ Gem::Specification.new do |spec|
   else
     raise "RubyGems 2.0 or newer is required to protect against public gem pushes."
   end
+  spec.licenses      = ["MIT"]
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.bindir        = "exe"
