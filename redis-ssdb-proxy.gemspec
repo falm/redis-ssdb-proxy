@@ -6,7 +6,7 @@ require 'redis_ssdb_proxy/version'
 Gem::Specification.new do |spec|
   spec.name          = "redis-ssdb-proxy"
   spec.version       = RedisSsdbProxy::VERSION
-  spec.authors       = ["falm"]
+  spec.authors       = ["Jason Hou"]
   spec.email         = ["hjj1992@gmail.com"]
 
   spec.summary       = %q{proxy that read from redis(or ssdb) write to both use for redis <=> ssdb migration on production}
