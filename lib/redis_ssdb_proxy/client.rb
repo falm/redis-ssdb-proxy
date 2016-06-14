@@ -23,23 +23,26 @@ module RedisSsdbProxy
       end
     end
 
+    class << self
+      private   
+      def send_to_slave(command)
+        class_eval <<-EOS
+          def #{command}(*args, &block)
+            slave.#{command}(*args, &block)
+          end
+        EOS
+      end
 
-    def send_to_slave(command)
-      class_eval <<-EOS
-        def #{command}(*args, &block)
-          slave.#{command}(*args, &block)
-        end
-      EOS
+      def send_to_master(command)
+        class_eval <<-EOS
+          def #{command}(*args, &block)
+            master.#{command}(*args, &block)
+          end
+        EOS
+      end
+
     end
 
-    def send_to_master(command)
-      class_eval <<-EOS
-        def #{command}(*args, &block)
-          master.#{command}(*args, &block)
-        end
-      EOS
-    end
+  end # Client
 
-  end
-
-end
+end # RedisSsdbProxy
