@@ -5,8 +5,11 @@ module RedisSsdbProxy
 
   class Client
 
-    def initialize(*args)
-
+    def initialize(args)
+      sellf.master, self.slave = args.fetch(:master), args.fetch(:slave)
+      if [:master, :slave].include? args[:ssdb]
+        delegate_ssdb_unsupport self.send(args[:ssdb])
+      end
     end
 
     def delegate_ssdb_unsupport(redis_client)
@@ -24,7 +27,7 @@ module RedisSsdbProxy
     end
 
     class << self
-      private   
+      private
       def send_to_slave(command)
         class_eval <<-EOS
           def #{command}(*args, &block)
