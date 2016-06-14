@@ -5,7 +5,7 @@ require 'redis/ssdb/proxy/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "redis-ssdb-proxy"
-  spec.version       = Redis::Ssdb::Proxy::VERSION
+  spec.version       = RedisSsdbProxy::VERSION
   spec.authors       = ["falm"]
   spec.email         = ["hjj1992@gmail.com"]
 
