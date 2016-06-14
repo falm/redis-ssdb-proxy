@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{proxy that read from redis(or ssdb) write to both use for redis <=> ssdb migration on production}
   spec.description   = %q{proxy that read from redis(or ssdb) write to both use for redis <=> ssdb migration on production}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.homepage      = "https://github.com/falm/redis-ssdb-proxy"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
   # delete this section to allow pushing this gem to any host.
