@@ -44,6 +44,14 @@ module RedisSsdbProxy
         EOS
       end
 
+      def send_to_both(command)
+        class_eval <<-EOS
+          def #{command}(*args, &block)
+            slave.#{command}(*args, &block)
+            master.#{command}(*args, &block)
+          end
+        EOS
+      end
     end
 
 
@@ -83,7 +91,17 @@ module RedisSsdbProxy
     send_to_master :zrank
     send_to_master :zrevrange
     send_to_master :zscore
-  
+
+    # all write opreate send to master slave both
+    def method_missing(name, *args, &block)
+      if master.respond_to?(name)
+        self.class.send(:send_to_both, name) 
+        slave.send(name, *args, &block)
+        master.send(name, *args, &block)
+      else
+        super
+      end
+    end
 
 
   end # Client
