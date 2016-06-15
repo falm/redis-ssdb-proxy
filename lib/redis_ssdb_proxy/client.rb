@@ -95,7 +95,7 @@ module RedisSsdbProxy
     # all write opreate send to master slave both
     def method_missing(name, *args, &block)
       if master.respond_to?(name)
-        self.class.send(:send_to_both, name) 
+        self.class.send(:send_to_both, name)
         slave.send(name, *args, &block)
         master.send(name, *args, &block)
       else
