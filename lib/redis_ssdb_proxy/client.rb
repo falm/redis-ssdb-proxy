@@ -6,7 +6,7 @@ module RedisSsdbProxy
     attr_accessor :master, :slave
 
     def initialize(args)
-      sellf.master, self.slave = args.fetch(:master), args.fetch(:slave)
+      self.master, self.slave = args.fetch(:master), args.fetch(:slave)
       if [:master, :slave].include? args[:ssdb]
         delegate_ssdb_unsupport self.send(args[:ssdb])
       end
