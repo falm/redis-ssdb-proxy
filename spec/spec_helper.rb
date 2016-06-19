@@ -3,6 +3,9 @@ require 'redis'
 require 'redis-namespace'
 require 'redis-ssdb-proxy'
 require 'dotenv'
+require 'coveralls'
+
+Coveralls.wear!
 
 Dotenv.load
 
