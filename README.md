@@ -1,5 +1,4 @@
-# RedisSsdbProxy [![Build Status](https://travis-ci.org/falm/redis-ssdb-proxy.svg?branch=master)](https://travis-ci.org/falm/redis-ssdb-proxy)
-[![Coverage Status](https://coveralls.io/repos/github/falm/redis-ssdb-proxy/badge.svg?branch=master)](https://coveralls.io/github/falm/redis-ssdb-proxy?branch=master)
+# RedisSsdbProxy [![Build Status](https://travis-ci.org/falm/redis-ssdb-proxy.svg?branch=master)](https://travis-ci.org/falm/redis-ssdb-proxy) [![Coverage Status](https://coveralls.io/repos/github/falm/redis-ssdb-proxy/badge.svg?branch=master)](https://coveralls.io/github/falm/redis-ssdb-proxy?branch=master)
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/redis/ssdb/proxy`. To experiment with that code, run `bin/console` for an interactive prompt.
 
