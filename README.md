@@ -1,8 +1,6 @@
-# RedisSsdbProxy [![Build Status](https://travis-ci.org/falm/redis-ssdb-proxy.svg?branch=master)](https://travis-ci.org/falm/redis-ssdb-proxy) [![Coverage Status](https://coveralls.io/repos/github/falm/redis-ssdb-proxy/badge.svg?branch=master)](https://coveralls.io/github/falm/redis-ssdb-proxy?branch=master)
+# Redis SSDB Proxy [![Build Status](https://travis-ci.org/falm/redis-ssdb-proxy.svg?branch=master)](https://travis-ci.org/falm/redis-ssdb-proxy) [![Coverage Status](https://coveralls.io/repos/github/falm/redis-ssdb-proxy/badge.svg?branch=master)](https://coveralls.io/github/falm/redis-ssdb-proxy?branch=master)
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/redis/ssdb/proxy`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+The Redis SSDB Proxy that read from redis(or ssdb) write to both use for redis <=> ssdb migration on production
 
 ## Installation
 
@@ -22,13 +20,25 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+If you want migrate redis data to SSDB the below code will write data to both of redis and ssdb and read from redis only
 
-## Development
+The options *ssdb: :slave* tells Proxy which redis-client is connected to the ssdb server which means Proxy will be delegating the unsupport data-structure (set) of SSDB to supported(zset)
+```ruby
+ssdb = Redis.new(host: 'localhost', port: '8888')
+redis = Redis.new(host: 'localhost', port: '6379')
 
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+$redis = RedisSsdbProxy.new(master: redis, slave: ssdb, ssdb: :slave)
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+$redis.set(:quotes, 'May the force be with you') # set to both
+$redis.get(:quotes) # read from master (redis)
+# => May the force be with you
+```
+
+When the data migrated the below line code will being prepare for the rollback
+
+```ruby
+$redis = RedisSsdbProxy.new(master: ssdb, slave: redis, ssdb: :master)
+```
 
 ## Contributing
 
