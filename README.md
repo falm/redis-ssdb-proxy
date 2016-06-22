@@ -31,7 +31,7 @@ $redis = RedisSsdbProxy.new(master: redis, slave: ssdb, ssdb: :slave)
 
 $redis.set(:quotes, 'May the force be with you') # set to both
 $redis.get(:quotes) # read from master (redis)
-# => May the force be with you
+# => May the force be with you 
 ```
 
 When the data migrated the below line code will being prepare for the rollback
