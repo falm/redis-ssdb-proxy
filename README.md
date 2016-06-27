@@ -1,4 +1,4 @@
-# Redis SSDB Proxy [![Build Status](https://travis-ci.org/falm/redis-ssdb-proxy.svg?branch=master)](https://travis-ci.org/falm/redis-ssdb-proxy) [![Coverage Status](https://coveralls.io/repos/github/falm/redis-ssdb-proxy/badge.svg?branch=master)](https://coveralls.io/github/falm/redis-ssdb-proxy?branch=master)
+# Redis SSDB Proxy [![Build Status](https://travis-ci.org/falm/redis-ssdb-proxy.svg?branch=master)](https://travis-ci.org/falm/redis-ssdb-proxy) [![Coverage Status](https://coveralls.io/repos/github/falm/redis-ssdb-proxy/badge.svg?branch=master)](https://coveralls.io/github/falm/redis-ssdb-proxy?branch=master) [![Code Climate](https://codeclimate.com/github/falm/redis-ssdb-proxy/badges/gpa.svg)](https://codeclimate.com/github/falm/redis-ssdb-proxy)
 
 The Redis SSDB Proxy that read from redis(or ssdb) write to both use for redis <=> ssdb migration on production
 
@@ -31,7 +31,7 @@ $redis = RedisSsdbProxy.new(master: redis, slave: ssdb, ssdb: :slave)
 
 $redis.set(:quotes, 'May the force be with you') # set to both
 $redis.get(:quotes) # read from master (redis)
-# => May the force be with you 
+# => May the force be with you
 ```
 
 When the data migrated the below line code will being prepare for the rollback
