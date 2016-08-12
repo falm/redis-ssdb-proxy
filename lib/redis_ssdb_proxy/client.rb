@@ -7,23 +7,7 @@ module RedisSsdbProxy
 
     def initialize(args)
       self.master, self.slave = args.fetch(:master), args.fetch(:slave)
-      if [:master, :slave].include? args[:ssdb]
-        delegate_ssdb_unsupport self.send(args[:ssdb])
-      end
-    end
-
-    def delegate_ssdb_unsupport(redis_client)
-      redis_client.instance_eval do
-        def sadd(key, *args)
-          zadd(key, args.map{ |arg|
-            [Time.now.to_i, arg]
-          })
-        end
-
-        def srem(*args)
-          zrem(*args)
-        end
-      end
+      Delegator.call(self, args[:ssdb])
     end
 
     class << self
