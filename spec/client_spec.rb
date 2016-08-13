@@ -22,13 +22,13 @@ describe RedisSsdbProxy do
   end
 
   it 'should write to redis and ssdb' do
-    args = [:quotes, 'starwars']
+    args = [:quotes, 'star_wars']
     redis_to_ssdb_proxy.hset( *(args + ['May the force be with you']) )
     expect(@redis.hget(*args)).to eq(@ssdb.hget(*args))
   end
 
-  it 'delagate set to zset' do
-    quotes = ["I'm your father", "Thats's no moon", 'Use the force, Luke']
+  it 'delegate set to zset' do
+    quotes = ["I'm your father", "That's no moon", 'Use the force, Luke']
     key = "#{rand(20)}_quotes_of_star_wars"
     quotes.each { |q| redis_to_ssdb_proxy.sadd(key, q) }
     result = @ssdb.zrange(key, 0, -1)
